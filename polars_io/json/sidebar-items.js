@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["JsonFormat",""]],"mod":[["read","APIs to read and deserialize from JSON"],["write","APIs to write to JSON"]],"struct":[["JsonReader",""],["JsonWriter",""]],"type":[["ArrowResult","Typedef for a [`std::result::Result`] of an [`ArrowError`]."]]});

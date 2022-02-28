@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="DateTime related functionality"><meta name="keywords" content="rust, rustlang, rust-lang, time"><title>polars_core::doc::time - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../polars_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../polars_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Module time</a></h2><div class="sidebar-elems"><div id="sidebar-vars" data-name="time" data-ty="mod" data-relpath="./"></div><script defer src="./sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../polars_core/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Module <a href="../../index.html">polars_core</a>::<wbr><a href="../index.html">doc</a>::<wbr><a class="mod" href="#">time</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../../src/polars_core/doc/time.rs.html#1-67">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="datetime-related-functionality"><a href="#datetime-related-functionality">DateTime related functionality</a></h2>
+<p>Polars supports most data types in Arrow related to time and dates.
+The datatypes that have most utility support are:</p>
+<ul>
+<li>Date
+<ul>
+<li>A <em>Date</em> object representing the time in days since the unix epoch.</li>
+<li>Chrono support type: <a href="https://docs.rs/chrono/0.4.13/chrono/naive/struct.NaiveDate.html">NaiveDate</a></li>
+<li>Underlying data type: <code>i32</code></li>
+</ul>
+</li>
+<li>Datetime
+<ul>
+<li>A <em>DateTime</em> object representing the time in milliseconds since the unix epoch.</li>
+<li>Chrono support type: <a href="https://docs.rs/chrono/0.4.13/chrono/naive/struct.NaiveDateTime.html">NaiveDateTime</a></li>
+<li>Underlying data type: <code>i64</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="utility-methods"><a href="#utility-methods">Utility methods</a></h3>
+<p>Given a <code>Date</code> or <code>Datetime</code> <code>ChunkedArray</code> one can extract various temporal information</p>
+<h3 id="chrono"><a href="#chrono">Chrono</a></h3>
+<p>Polars has interopatibilty with the <code>chrono</code> library.</p>
+<h3 id="string-formatting"><a href="#string-formatting">String formatting</a></h3>
+<p>We can also directly parse strings given a predefined <code>fmt: &amp;str</code>. This uses <strong>chrono’s</strong>
+<a href="https://docs.rs/chrono/0.4.15/chrono/naive/struct.NaiveTime.html#method.parse_from_str">NaiveTime::parse_from_str</a>
+under the hood. So look there for the different formatting options. If the string parsing is not
+successful, the value will be <code>None</code>.</p>
+<h4 id="examples"><a href="#examples">Examples</a></h4><h5 id="parsing-from-utf8chunked"><a href="#parsing-from-utf8chunked">Parsing from Utf8Chunked</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">polars_core::prelude</span>::<span class="kw-2">*</span>;
+
+<span class="comment">// String values to parse, Note that the 2nd value is not a correct time value.</span>
+<span class="kw">let</span> <span class="ident">datetime_values</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="string">&quot;2021-12-01 23:56:04&quot;</span>, <span class="string">&quot;22021-12-01 26:00:99&quot;</span>, <span class="string">&quot;12021-12-01 22:39:08&quot;</span>];
+<span class="comment">// Parsing fmt</span>
+<span class="kw">let</span> <span class="ident">fmt</span> <span class="op">=</span> <span class="string">&quot;%Y-%m%-d %H:%M:%S&quot;</span>;
+<span class="comment">// Create the ChunkedArray</span>
+<span class="kw">let</span> <span class="ident">ca</span> <span class="op">=</span> <span class="ident">Utf8Chunked::new</span>(<span class="string">&quot;datetime&quot;</span>, <span class="ident">datetime_values</span>);
+<span class="comment">// Parse strings as DateTime objects</span>
+<span class="kw">let</span> <span class="ident">date_ca</span> <span class="op">=</span> <span class="ident">ca</span>.<span class="ident">as_datetime</span>(<span class="prelude-val">Some</span>(<span class="ident">fmt</span>), <span class="ident">TimeUnit::Milliseconds</span>);</code></pre></div>
+<h5 id="parsing-directly-from-slice"><a href="#parsing-directly-from-slice">Parsing directly from slice</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">polars_core::prelude</span>::<span class="kw-2">*</span>;
+<span class="comment">// don&#39;t use this in your code, use chrono directly!</span>
+<span class="kw">use</span> <span class="ident">polars_core::export::chrono::NaiveDateTime</span>;
+
+<span class="comment">// String values to parse, Note that the 2nd value is not a correct time value.</span>
+<span class="kw">let</span> <span class="ident">datetime_values</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[
+            <span class="string">&quot;1988-08-25 00:00:16&quot;</span>,
+            <span class="string">&quot;2015-09-05 23:56:04&quot;</span>,
+            <span class="string">&quot;2012-12-21 00:00:00&quot;</span>,
+        ];
+<span class="comment">// Parsing fmt</span>
+<span class="kw">let</span> <span class="ident">fmt</span> <span class="op">=</span> <span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>;
+
+<span class="comment">// Create the ChunkedArray</span>
+<span class="kw">let</span> <span class="ident">ca</span> <span class="op">=</span> <span class="ident">DatetimeChunked::parse_from_str_slice</span>(<span class="string">&quot;datetime as ms since Epoch&quot;</span>, <span class="ident">datetime_values</span>, <span class="ident">fmt</span>, <span class="ident">TimeUnit::Nanoseconds</span>);
+
+<span class="comment">// or dates in different precision (days)</span>
+<span class="kw">let</span> <span class="ident">ca</span> <span class="op">=</span> <span class="ident">DateChunked::parse_from_str_slice</span>(<span class="string">&quot;date as days since Epoch&quot;</span>, <span class="ident">datetime_values</span>, <span class="ident">fmt</span>);</code></pre></div>
+</div></details></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="polars_core" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (68369a041 2022-02-22)" ></div>
+</body></html>

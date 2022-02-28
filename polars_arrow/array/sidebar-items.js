@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["default_arrays",""],["list",""]],"trait":[["ListFromIter",""],["PolarsArray",""],["ValueSize",""]]});

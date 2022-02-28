@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["ParquetCompression",""]],"mod":[["predicates",""]],"struct":[["ParquetReader","Read Apache parquet format into a DataFrame."],["ParquetWriter","Write a DataFrame to parquet format"]]});
